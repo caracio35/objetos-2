@@ -19,7 +19,7 @@ public class Plato {
         return this.descripccion;
     }
 
-    public Double getPrecio() {
-        return this.precioUnitario;
+    public double calcularPrecio() {
+        return precioUnitario;
     }
 }

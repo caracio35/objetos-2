@@ -16,4 +16,8 @@ public class Bebida {
     public Double getPrecioUnitario() {
         return this.precoUnitario;
     }
+
+    public double calcularPrecio() {
+        return precoUnitario;
+    }
 }
