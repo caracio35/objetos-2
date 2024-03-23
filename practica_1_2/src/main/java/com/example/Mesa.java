@@ -40,10 +40,8 @@ public class Mesa {
 
         double totalBebidas = calcularPrecioTotalBebidas();
         double totalPlatos = calcularPrecioTotalPlatos();
-        Double PrecioApagar = t.aplicarDescuento(totalPlatos, totalBebidas);
 
-        Caja.cobra(t, totalBebidas, totalPlatos);
-        return PrecioApagar;
+        return t.cobrar(totalBebidas, totalPlatos);
 
     }
 

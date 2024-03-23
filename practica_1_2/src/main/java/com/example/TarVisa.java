@@ -4,13 +4,12 @@ import java.time.LocalDate;
 
 public class TarVisa extends Tarjeta {
 
-    public TarVisa(int numTarjeta, String nombrePropetorio, double limiteCredito, LocalDate fechaVencimiento,
-            double descuento) {
-        super(numTarjeta, nombrePropetorio, limiteCredito, fechaVencimiento, descuento);
-        // TODO Auto-generated constructor stub
+    public TarVisa(int numTarjeta, String nombrePropetorio, double limiteCredito, LocalDate fechaVencimiento) {
+        super(numTarjeta, nombrePropetorio, limiteCredito, fechaVencimiento);
+        this.descuento = 0.97;
     }
 
-    boolean estaActiva() {
+    public boolean estaActiva() {
         LocalDate hoy = LocalDate.now();
         return !hoy.isAfter(fechaVencimiento);
     }
@@ -21,17 +20,21 @@ public class TarVisa extends Tarjeta {
     }
 
     @Override
-    public String cobrar(double monto) {
+    public double cobrar(double totalBebidas, double totalPlatos) {
+        double monto = this.aplicarDescuento(totalBebidas, totalPlatos);
+
         if (this.estaActiva()) {
             if (limiteCredito >= monto) {
                 limiteCredito -= monto;
-                return "Se ha realizado el pago de $" + monto + "muchas gracias por tu compra ";
+                return monto;
             } else {
-                return ("No tiene suficiente dinero en su tarjeta.");
+                return -1;
 
             }
         } else {
-            return "La tarjeta no está activa";
+            return -1;
         }
+
     }
+
 }

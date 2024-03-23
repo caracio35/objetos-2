@@ -10,8 +10,7 @@ public abstract class Tarjeta {
     LocalDate fechaVencimiento;
     Double descuento;
 
-    public Tarjeta(int numTarjeta, String nombrePropetorio, double limiteCredito, LocalDate fechaVencimiento,
-            double descuento) {
+    public Tarjeta(int numTarjeta, String nombrePropetorio, double limiteCredito, LocalDate fechaVencimiento) {
         this.numTarjeta = numTarjeta;
         this.nombrePropietario = nombrePropetorio;
         this.limiteCredito = limiteCredito;
@@ -22,6 +21,6 @@ public abstract class Tarjeta {
 
     abstract boolean estaActiva();
 
-    public abstract String cobrar(double monto);
+    public abstract double cobrar(double totalBebidas, double totalPlatos);
 
 }

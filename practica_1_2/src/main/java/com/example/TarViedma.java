@@ -2,11 +2,10 @@ package com.example;
 
 import java.time.LocalDate;
 
-public class TarMaster extends Tarjeta {
-
-    public TarMaster(int numTarjeta, String nombrePropetorio, double limiteCredito, LocalDate fechaVencimiento) {
+public class TarViedma extends Tarjeta {
+    public TarViedma(int numTarjeta, String nombrePropetorio, double limiteCredito, LocalDate fechaVencimiento) {
         super(numTarjeta, nombrePropetorio, limiteCredito, fechaVencimiento);
-        this.descuento = 0.98;
+        this.descuento = 1.0;
         // TODO Auto-generated constructor stub
     }
 
@@ -26,17 +25,17 @@ public class TarMaster extends Tarjeta {
 
         double monto = this.aplicarDescuento(montoBebidas, montoPlato);
 
-        // if (this.estaActiva()) {
-        if (limiteCredito >= monto) {
-            limiteCredito -= monto;
-            return monto;
+        if (this.estaActiva()) {
+            if (limiteCredito >= monto) {
+                limiteCredito -= monto;
+                return monto;
+            } else {
+                return -1;
+
+            }
         } else {
             return -1;
-
         }
-        // } else {
-        // return -1;
-        // }
     }
 
 }
