@@ -6,7 +6,6 @@ public class TarViedma extends Tarjeta {
     public TarViedma(int numTarjeta, String nombrePropetorio, double limiteCredito, LocalDate fechaVencimiento) {
         super(numTarjeta, nombrePropetorio, limiteCredito, fechaVencimiento);
         this.descuento = 1.0;
-        // TODO Auto-generated constructor stub
     }
 
     @Override

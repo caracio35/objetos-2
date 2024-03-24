@@ -7,7 +7,6 @@ public class TarMaster extends Tarjeta {
     public TarMaster(int numTarjeta, String nombrePropetorio, double limiteCredito, LocalDate fechaVencimiento) {
         super(numTarjeta, nombrePropetorio, limiteCredito, fechaVencimiento);
         this.descuento = 0.98;
-        // TODO Auto-generated constructor stub
     }
 
     @Override

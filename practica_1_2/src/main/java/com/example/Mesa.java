@@ -6,9 +6,12 @@ public class Mesa {
     private int numMesa;
     private ArrayList<Plato> platos;// Crear um array de 30 posicioes para los produtos de la mesa
     private ArrayList<Bebida> bebidas;
+    @SuppressWarnings("unused")
     private Tarjeta tarjeta;
+    @SuppressWarnings("unused")
     private Double monto;
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public Mesa(int numMesa) {
         this.numMesa = numMesa;
         platos = new ArrayList(30);

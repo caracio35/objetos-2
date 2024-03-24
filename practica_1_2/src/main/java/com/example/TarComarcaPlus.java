@@ -6,7 +6,6 @@ public class TarComarcaPlus extends Tarjeta {
     public TarComarcaPlus(int numTarjeta, String nombrePropetorio, double limiteCredito, LocalDate fechaVencimiento) {
         super(numTarjeta, nombrePropetorio, limiteCredito, fechaVencimiento);
         this.descuento = 0.98;
-        // TODO Auto-generated constructor stub
     }
 
     boolean estaActiva() {

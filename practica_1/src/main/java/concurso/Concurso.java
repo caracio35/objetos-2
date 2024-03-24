@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Concurso {
+    @SuppressWarnings("unused")
     private final String nombre;
     private final LocalDate fechaInicioConcurso;
     private final LocalDate fechaFinConcurso;

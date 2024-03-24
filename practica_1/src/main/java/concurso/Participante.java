@@ -3,6 +3,7 @@ package concurso;
 import java.util.Objects;
 
 public class Participante {
+    @SuppressWarnings("unused")
     private String name;
     private String dni;
     private int puntos;
