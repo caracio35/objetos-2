@@ -36,11 +36,11 @@ public class Mesa {
         bebidas.add(b);
     }
 
-    public double pagarMontoTotal(Tarjeta t) {
+    public double pagarMontoTotal(Tarjeta t, double Propina) {
 
         double totalBebidas = calcularPrecioTotalBebidas();
         double totalPlatos = calcularPrecioTotalPlatos();
-
+        // pagarPropina(totalPlatos, totalBebidas,Propina);
         return t.cobrar(totalBebidas, totalPlatos);
 
     }
@@ -59,6 +59,16 @@ public class Mesa {
             precio += p.calcularPrecio();
         }
         return precio;
+    }
+
+    public double pagarPropina(Tarjeta t, double Propina) {
+
+        double porsentajePropina = Propina / 100;
+        double tBebidas = calcularPrecioTotalBebidas();
+        double tPlatos = calcularPrecioTotalPlatos();
+        tBebidas = tBebidas * porsentajePropina;
+        tPlatos = tPlatos * porsentajePropina;
+        return t.cobrar(tBebidas, tPlatos);
     }
 
 }
