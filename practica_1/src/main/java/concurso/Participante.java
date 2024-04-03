@@ -14,6 +14,10 @@ public class Participante {
         puntos = 0;
     }
 
+    public static Participante participanteAs(String name, String dni) {
+        return new Participante(name, dni);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)
@@ -32,7 +36,16 @@ public class Participante {
         puntos += i;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
     public int cuantosPuntos() {
         return puntos;
     }
+
 }

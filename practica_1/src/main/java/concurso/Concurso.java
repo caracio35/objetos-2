@@ -58,4 +58,13 @@ public class Concurso {
         return this.participantes.contains(p);
     }
 
+    public void inscripcionLibreta(Participante p) {
+        // a cada participante lo busca en un archivo de texto y si no esta lo inscibe y
+        // lo guarda
+
+    }
+
+    String nombreConcurso() {
+        return nombre;
+    }
 }

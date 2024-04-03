@@ -1,10 +1,12 @@
 import org.junit.jupiter.api.Test;
 
 import concurso.Concurso;
+import concurso.LibretaTex;
 import concurso.Participante;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class ConcursoTest {
@@ -51,5 +53,20 @@ public class ConcursoTest {
         assertTrue(concuTest.participa(pepe));
         System.out.println(pepe.cuantosPuntos());
         assertEquals(0, pepe.cuantosPuntos());
+    }
+
+    @Test
+    public void incripccionEnLibreta() throws IOException {
+        Participante pepe = new Participante("pepe", "35123019");
+        Concurso concuTest = new Concurso("concursoTest", LocalDate.now().minusDays(1), LocalDate.now().plusDays(15));
+        LibretaTex l = new LibretaTex();
+        String rutaArchivo = "C:\\Users\\jose\\Desktop\\oop2-clase1-main\\prueba.txt";
+        l.inscribir(pepe, concuTest, rutaArchivo);
+        pepe = new Participante("clara ", "55101984");
+        l.inscribir(pepe, concuTest, rutaArchivo);
+        l.inscribir(pepe, concuTest, rutaArchivo);
+        assertTrue(l.estaInscripto(rutaArchivo, pepe));
+        pepe = new Participante("pepe", "35101984");
+        assertFalse(l.estaInscripto(rutaArchivo, pepe));
     }
 }
