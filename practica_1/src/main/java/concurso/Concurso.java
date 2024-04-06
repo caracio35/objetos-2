@@ -1,5 +1,6 @@
 package concurso;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -9,17 +10,21 @@ public class Concurso {
     private final LocalDate fechaInicioConcurso;
     private final LocalDate fechaFinConcurso;
     private ArrayList<Participante> participantes = new ArrayList<>();
+    private LibretaTex libreta;
 
-    public Concurso(String nombre, LocalDate fechaInicioConcurso, LocalDate fechaFinConcurso) {
+    public Concurso(String nombre, LocalDate fechaInicioConcurso, LocalDate fechaFinConcurso,LibretaTex libreta) {
         this.nombre = nombre;
         this.fechaInicioConcurso = fechaInicioConcurso;
         this.fechaFinConcurso = fechaFinConcurso;
+        this.libreta=libreta;
+
     }
 
     /**
      * @param p
+     * @throws IOException 
      */
-    public void inscripcion(Participante p) {
+    public void inscripcion(Participante p)  {
         // comparar si el participante ya esta inscripto
         if (this.participantes.contains(p))
             System.out.println("El  participante ya se encuentra registrado");
@@ -27,6 +32,7 @@ public class Concurso {
         else {
             if (!fechaInicioConcurso.isAfter(LocalDate.now()) && !fechaFinConcurso.isBefore(LocalDate.now())) {
                 this.participantes.add(p);
+                this.libreta.inscribir(p.getDni(), nombre);
                 // sumar 10 puntos al participante si se inscribio en el primer dia
                 if (LocalDate.now().equals(fechaInicioConcurso))
                     p.agregarPuntos(10);
