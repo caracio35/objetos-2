@@ -3,6 +3,7 @@ package com.example;
 import java.util.ArrayList;
 
 public class Mesa {
+    private LibroVentaDiario libroVenta;
     private int numMesa;
     private ArrayList<Plato> platos;// Crear um array de 30 posicioes para los produtos de la mesa
     private ArrayList<Bebida> bebidas;
@@ -12,11 +13,12 @@ public class Mesa {
     private Double monto;
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public Mesa(int numMesa) {
+    public Mesa(int numMesa, LibroVentaDiario libroVenta) {
         this.numMesa = numMesa;
         platos = new ArrayList(30);
         bebidas = new ArrayList<>(30);
         monto = 0.0;
+        this.libroVenta = libroVenta;
 
     }
 
@@ -44,7 +46,9 @@ public class Mesa {
         double totalBebidas = calcularPrecioTotalBebidas();
         double totalPlatos = calcularPrecioTotalPlatos();
         // pagarPropina(totalPlatos, totalBebidas,Propina);
-        return t.cobrar(totalBebidas, totalPlatos);
+        double montoPagado = t.cobrar(totalBebidas, totalPlatos);
+        libroVenta.agregarVenta(String.valueOf(montoPagado));
+        return montoPagado;
 
     }
 

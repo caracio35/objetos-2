@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import com.example.Bebida;
 import com.example.Mesa;
+import com.example.MokLibroVenta;
 import com.example.Plato;
 import com.example.TarComarcaPlus;
 import com.example.TarMaster;
@@ -23,8 +24,9 @@ public class TestCobros {
 
         @Test
         public void calculoCostoVisa() {
+                var libroDiario = new MokLibroVenta();
                 var tarjeta = new TarVisa(111112, "pepe", 500.00, LocalDate.now().plusMonths(120));
-                var mesa = new Mesa(1);
+                var mesa = new Mesa(1, libroDiario);
                 Plato p1 = new Plato(null, null, 50.00),
                                 p2 = new Plato("Pizza", "Marinara", 30.00),
                                 p3 = new Plato("Hamburguesa", "Chimichurri", 40.00);
@@ -44,9 +46,10 @@ public class TestCobros {
         // 343.10
         @Test
         public void calculoCostoMaster() {
+                var libroDiario = new MokLibroVenta();
                 LocalDate hoy = LocalDate.now();
                 var tarjeta = new TarMaster(111112, "pepe", 500.00, hoy.plusDays(30)); // $100 limit
-                var mesa = new Mesa(1);
+                var mesa = new Mesa(1, libroDiario);
                 Plato p1 = new Plato(null, null, 50.00),
                                 p2 = new Plato("Pizza", "Marinara", 30.00),
                                 p3 = new Plato("Hamburguesa", "Chimichurri", 40.00);
@@ -61,13 +64,15 @@ public class TestCobros {
                 mesa.agregarPlato(p2);
                 mesa.agregarPlato(p3);
                 assertTrue((mesa.pagarMontoTotal(tarjeta, 0)) == 347.6);
+                assertTrue(libroDiario.estaEstaVenta("347.6"));
         }
 
         @Test
         public void calculoComarcaPlus() {
+                var libroDiario = new MokLibroVenta();
                 LocalDate hoy = LocalDate.now();
                 var tarjeta = new TarComarcaPlus(111112, "pepe", 500.00, hoy.plusDays(30)); // $100 limit
-                var mesa = new Mesa(1);
+                var mesa = new Mesa(1, libroDiario);
                 Plato p1 = new Plato(null, null, 50.00),
                                 p2 = new Plato("Pizza", "Marinara", 30.00),
                                 p3 = new Plato("Hamburguesa", "Chimichurri", 40.00);
@@ -86,9 +91,10 @@ public class TestCobros {
 
         @Test
         public void calculoDemasTar() {
+                var libroDiario = new MokLibroVenta();
                 LocalDate hoy = LocalDate.now();
                 var tarjeta = new TarViedma(111112, "pepe", 500.00, hoy.plusDays(30)); // $100 limit
-                var mesa = new Mesa(1);
+                var mesa = new Mesa(1, libroDiario);
                 Plato p1 = new Plato(null, null, 50.00),
                                 p2 = new Plato("Pizza", "Marinara", 30.00),
                                 p3 = new Plato("Hamburguesa", "Chimichurri", 40.00);
@@ -107,9 +113,10 @@ public class TestCobros {
 
         @Test
         public void calculoPropina() {
+                var libroDiario = new MokLibroVenta();
                 LocalDate hoy = LocalDate.now();
                 var tarjeta = new TarViedma(111112, "pepe", 500.00, hoy.plusDays(30)); // $100 limit
-                var mesa = new Mesa(1);
+                var mesa = new Mesa(1, libroDiario);
                 Plato p1 = new Plato(null, null, 50.00),
                                 p2 = new Plato("Pizza", "Marinara", 30.00),
                                 p3 = new Plato("Hamburguesa", "Chimichurri", 40.00);

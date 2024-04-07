@@ -12,19 +12,19 @@ public class Concurso {
     private ArrayList<Participante> participantes = new ArrayList<>();
     private LibretaTex libreta;
 
-    public Concurso(String nombre, LocalDate fechaInicioConcurso, LocalDate fechaFinConcurso,LibretaTex libreta) {
+    public Concurso(String nombre, LocalDate fechaInicioConcurso, LocalDate fechaFinConcurso, LibretaTex libreta) {
         this.nombre = nombre;
         this.fechaInicioConcurso = fechaInicioConcurso;
         this.fechaFinConcurso = fechaFinConcurso;
-        this.libreta=libreta;
+        this.libreta = libreta;
 
     }
 
     /**
      * @param p
-     * @throws IOException 
+     * @throws IOException
      */
-    public void inscripcion(Participante p)  {
+    public void inscripcion(Participante p) {
         // comparar si el participante ya esta inscripto
         if (this.participantes.contains(p))
             System.out.println("El  participante ya se encuentra registrado");
