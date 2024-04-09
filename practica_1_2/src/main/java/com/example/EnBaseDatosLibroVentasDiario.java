@@ -44,7 +44,13 @@ public class EnBaseDatosLibroVentasDiario implements LibroVentaDiario {
             e.printStackTrace();
         }
 
-        return montos.contains(monto);
+        for (String string : montos) {
+            if (string.equals(monto)) {
+                return true;
+            }
+        }
+
+        return false;
 
     }
 }

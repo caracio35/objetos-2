@@ -7,8 +7,8 @@ import java.sql.SQLException;
 public class Coneccion {
     // Configuración de la conexión a la base de datos
     private static final String URL = "jdbc:mysql://localhost:3306/LibroDeVentas"; // URL de la base de datos
-    private static final String USER = "tu_usuario"; // Usuario de la base de datos
-    private static final String PASSWORD = "tu_contraseña"; // Contraseña de la base de datos
+    private static final String USER = "root"; // Usuario de la base de datos
+    private static final String PASSWORD = ""; // Contraseña de la base de datos
 
     // Método para establecer la conexión
     public static Connection getConnection() {

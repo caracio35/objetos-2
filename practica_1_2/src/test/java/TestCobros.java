@@ -179,6 +179,6 @@ public class TestCobros {
                 mesa.agregarPlato(p2);
                 mesa.agregarPlato(p3);
                 mesa.pagarMontoTotal(tarjeta, 0);
-                libroDiario.estaEstaVenta("350");
+                assertTrue(libroDiario.estaEstaVenta("350.0"));
         }
 }
