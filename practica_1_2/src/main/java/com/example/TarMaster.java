@@ -25,17 +25,17 @@ public class TarMaster extends Tarjeta {
 
         double monto = this.aplicarDescuento(montoBebidas, montoPlato);
 
-        // if (this.estaActiva()) {
-        if (limiteCredito >= monto) {
-            limiteCredito -= monto;
-            return monto;
-        } else {
-            return -1;
+        if (this.estaActiva()) {
+            if (limiteCredito >= monto) {
+                limiteCredito -= monto;
+                return monto;
+            } else {
+                throw new RuntimeException("no tiene saldo suficiente ");
 
+            }
+        } else {
+            throw new RuntimeException("no esta activa  ");
         }
-        // } else {
-        // return -1;
-        // }
     }
 
 }

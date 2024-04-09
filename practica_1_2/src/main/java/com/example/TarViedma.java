@@ -29,11 +29,11 @@ public class TarViedma extends Tarjeta {
                 limiteCredito -= monto;
                 return monto;
             } else {
-                return -1;
+                throw new RuntimeException("no tiene saldo suficiente ");
 
             }
         } else {
-            return -1;
+            throw new RuntimeException("no esta activa  ");
         }
     }
 

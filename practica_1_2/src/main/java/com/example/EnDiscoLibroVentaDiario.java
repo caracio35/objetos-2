@@ -63,20 +63,3 @@ public class EnDiscoLibroVentaDiario implements LibroVentaDiario {
 
     }
 }
-
-/*
- * File archivo = new File(rutaDisco);
- * List<String> lineasExistentes;
- * try {
- * lineasExistentes = Files.readAllLines(Paths.get(rutaDisco));
- * if (archivo.exists())
- * return lineasExistentes.stream().anyMatch(linea1 -> linea1.contains(p));
- * else
- * return false;
- * } catch (IOException e) {
- * // TODO Auto-generated catch block
- * throw new RuntimeException("no se pudo inscribir en disco", e);
- * }
- * 
- * }
- */
