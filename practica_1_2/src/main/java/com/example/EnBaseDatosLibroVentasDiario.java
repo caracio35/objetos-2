@@ -21,9 +21,10 @@ public class EnBaseDatosLibroVentasDiario implements LibroVentaDiario {
             preparedStatement.setString(1, monto);
             preparedStatement.setString(2, hoy.format(formatter));
             preparedStatement.executeUpdate();
+            Coneccion.closeConnection(conn);
             System.out.println("Venta creada exitosamente en la base de datos.");
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("no se pudo conectar a la base de datos ", e);
         }
     }
 
@@ -40,12 +41,14 @@ public class EnBaseDatosLibroVentasDiario implements LibroVentaDiario {
                 String montoVenta = resultSet.getString("MontoVenta");
                 montos.add(montoVenta);
             }
+            Coneccion.closeConnection(conn);
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("no se pudo conectar a la base de datos ", e);
         }
 
         for (String string : montos) {
             if (string.equals(monto)) {
+
                 return true;
             }
         }

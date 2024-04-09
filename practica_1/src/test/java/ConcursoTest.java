@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
 
 import concurso.Concurso;
+import concurso.EnBaseDatosLibretaText;
 import concurso.EnDiscoLibretaDeText;
 import concurso.MokEnDiscoLibretaText;
 import concurso.Participante;
@@ -79,8 +80,8 @@ public class ConcursoTest {
     public void inscriveEnDisco() {
         EnDiscoLibretaDeText disco = new EnDiscoLibretaDeText("/home/jose/objetos-2/prueva.txt");
         Participante pepe = new Participante("pepe", "35123019");
-        Concurso concuTest = new Concurso("concursoTest", LocalDate.now().minusDays(1), LocalDate.now().plusDays(15),
-                disco);
+        Concurso concuTest = new Concurso("concursoTest",
+                LocalDate.now().minusDays(1), LocalDate.now().plusDays(15), disco);
         pepe = new Participante("clara ", "55101984");
         concuTest.inscripcion(pepe);
         assertTrue(disco.estaInscripto(pepe.getDni()));
@@ -88,4 +89,17 @@ public class ConcursoTest {
         assertFalse(disco.estaInscripto(pepe.getDni()));
     }
 
+    @Test
+    public void inscriveEnBaseDeDatos() {
+
+        EnBaseDatosLibretaText baseDato = new EnBaseDatosLibretaText();
+        Participante pepe = new Participante("pepe", "35123019");
+        Concurso concuTest = new Concurso("concursoTest",
+                LocalDate.now().minusDays(1), LocalDate.now().plusDays(15), baseDato);
+        pepe = new Participante("clara ", "55101984");
+        concuTest.inscripcion(pepe);
+        assertTrue(baseDato.estaInscripto(pepe.getDni()));
+        pepe = new Participante("pepe", "35101984");
+        assertFalse(baseDato.estaInscripto(pepe.getDni()));
+    }
 }
