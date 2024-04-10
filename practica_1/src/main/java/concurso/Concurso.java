@@ -11,12 +11,15 @@ public class Concurso {
     private final LocalDate fechaFinConcurso;
     private ArrayList<Participante> participantes = new ArrayList<>();
     private LibretaTex libreta;
+    EnvioDeMailConcursantes email;
 
-    public Concurso(String nombre, LocalDate fechaInicioConcurso, LocalDate fechaFinConcurso, LibretaTex libreta) {
+    public Concurso(String nombre, LocalDate fechaInicioConcurso, LocalDate fechaFinConcurso, LibretaTex libreta,
+            EnvioDeMailConcursantes email) {
         this.nombre = nombre;
         this.fechaInicioConcurso = fechaInicioConcurso;
         this.fechaFinConcurso = fechaFinConcurso;
         this.libreta = libreta;
+        this.email = email;
 
     }
 
@@ -33,6 +36,7 @@ public class Concurso {
             if (!fechaInicioConcurso.isAfter(LocalDate.now()) && !fechaFinConcurso.isBefore(LocalDate.now())) {
                 this.participantes.add(p);
                 this.libreta.inscribir(p.getDni(), nombre);
+                email.envioDeMail(p.cualEsTuMail());
                 // sumar 10 puntos al participante si se inscribio en el primer dia
                 if (LocalDate.now().equals(fechaInicioConcurso))
                     p.agregarPuntos(10);

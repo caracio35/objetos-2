@@ -7,15 +7,17 @@ public class Participante {
     private String name;
     private String dni;
     private int puntos;
+    private String mail;
 
-    public Participante(String name, String dni) {
+    public Participante(String name, String dni, String mail) {
         this.name = name;
         this.dni = dni;
         puntos = 0;
+        this.mail = mail;
     }
 
-    public static Participante participanteAs(String name, String dni) {
-        return new Participante(name, dni);
+    public static Participante participanteAs(String name, String dni, String mail) {
+        return new Participante(name, dni, mail);
     }
 
     @Override
@@ -46,6 +48,10 @@ public class Participante {
 
     public int cuantosPuntos() {
         return puntos;
+    }
+
+    public String cualEsTuMail() {
+        return mail;
     }
 
 }
