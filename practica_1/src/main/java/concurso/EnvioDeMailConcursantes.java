@@ -6,7 +6,7 @@ import jakarta.mail.internet.MimeMessage;
 
 import java.util.Properties;
 
-public class EnvioDeMailConcursantes {
+public class EnvioDeMailConcursantes implements EnvioDeMail {
     String host;
     String port;
     String username;
@@ -14,16 +14,9 @@ public class EnvioDeMailConcursantes {
 
     public EnvioDeMailConcursantes() {
 
-        // Configuración del servidor de correo saliente (SMTP) de Mailtrap
-        String host = "sandbox.smtp.mailtrap.io";
-        String port = "2525"; // Puerto SMTP de Mailtrap
-
-        // Credenciales de autenticación para Mailtrap
-        String username = "c1ba52ecc2e528";
-        String password = "0d96973aaf39e7";
     }
 
-    public static void sendEmail(String recipient, String subject, String body) {
+    public void sendEmail(String recipient, String subject, String body) {
         // Configuración del servidor de correo saliente (SMTP) de Mailtrap
         String host = "sandbox.smtp.mailtrap.io";
         String port = "2525"; // Puerto SMTP de Mailtrap
@@ -57,18 +50,19 @@ public class EnvioDeMailConcursantes {
             // Enviar el mensaje de correo
             Transport.send(message);
 
-            System.out.println("Correo electrónico enviado con éxito a " + recipient);
         } catch (MessagingException e) {
             throw new RuntimeException("Error al enviar el correo electrónico", e);
         }
+
     }
 
-    public static void envioDeMail(String dirMail) {
+    public String envioDeMail(String dirMail) {
         String recipient = dirMail;
         String subject = "¡Te has registrado en nuestro concurso!";
         String body = "¡Gracias por registrarte en nuestro concurso! Esperamos que tengas una experiencia increíble.";
 
         sendEmail(recipient, subject, body);
+        return "se envio un mail a " + dirMail;
     }
 
 }

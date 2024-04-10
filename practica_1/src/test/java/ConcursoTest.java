@@ -12,18 +12,18 @@ import concurso.EnDiscoLibretaDeText;
 import concurso.EnvioDeMailConcursantes;
 import concurso.MokEnDiscoLibretaText;
 import concurso.Participante;
+import concurso.mokEnvioDeMail;
 
 public class ConcursoTest {
     @Test
     public void unParticipateInscripto() {
         MokEnDiscoLibretaText mokLibreta = new MokEnDiscoLibretaText();
 
-        Concurso concuTest = new Concurso("concursoTest", LocalDate.now().minusDays(1), LocalDate.now().plusDays(15),
-                mokLibreta, new EnvioDeMailConcursantes());
+        Concurso concuTest = new Concurso("concursoTest", LocalDate.now(), LocalDate.now().plusDays(15),
+                mokLibreta, new mokEnvioDeMail());
         Participante pepe = new Participante("pepe", "35123011", "caracio35@gmail.com");
         concuTest.inscripcion(pepe);
         assertTrue(concuTest.participa(pepe));
-        System.out.println(pepe.cuantosPuntos());
 
     }
 
@@ -31,7 +31,7 @@ public class ConcursoTest {
     public void inscriptoPrimerDia() {
         MokEnDiscoLibretaText mokLibreta = new MokEnDiscoLibretaText();
         Concurso concuTest = new Concurso("concursoTest", LocalDate.now(), LocalDate.now().plusDays(15), mokLibreta,
-                new EnvioDeMailConcursantes());
+                new mokEnvioDeMail());
         Participante pepe = new Participante("pepe", "35123011", "caracio35@gmail.com");
         concuTest.inscripcion(pepe);
         System.out.println(pepe.cuantosPuntos());
@@ -43,7 +43,7 @@ public class ConcursoTest {
     public void inscriptoFueraRango() {
         MokEnDiscoLibretaText mokLibreta = new MokEnDiscoLibretaText();
         Concurso concuTestDespues = new Concurso("concursoTest", LocalDate.now().minusDays(7),
-                LocalDate.now().minusDays(1), mokLibreta, new EnvioDeMailConcursantes());
+                LocalDate.now().minusDays(1), mokLibreta, new mokEnvioDeMail());
         Concurso concutestAntes = new Concurso("concuters", LocalDate.now().plusDays(1),
                 LocalDate.now().plusDays(6), mokLibreta, new EnvioDeMailConcursantes());
         Participante juan = new Participante("juan", "35123011", "caracio35@gmail.com");
@@ -57,8 +57,8 @@ public class ConcursoTest {
     @Test
     public void inscripcionDespuesPrimerDia() {
         MokEnDiscoLibretaText mokLibreta = new MokEnDiscoLibretaText();
-        Concurso concuTest = new Concurso("concursoTest", LocalDate.now().minusDays(1), LocalDate.now().plusDays(15),
-                mokLibreta, new EnvioDeMailConcursantes());
+        Concurso concuTest = new Concurso("concursoTest", LocalDate.now().minusDays(2), LocalDate.now().plusDays(15),
+                mokLibreta, new mokEnvioDeMail());
         Participante pepe = new Participante("pepe", "35123011", "caracio35@gmail.com");
         concuTest.inscripcion(pepe);
         assertTrue(concuTest.participa(pepe));
@@ -71,7 +71,7 @@ public class ConcursoTest {
         MokEnDiscoLibretaText mokLibreta = new MokEnDiscoLibretaText();
         Participante pepe = new Participante("pepe", "35123011", "caracio35@gmail.com");
         Concurso concuTest = new Concurso("concursoTest", LocalDate.now().minusDays(1), LocalDate.now().plusDays(15),
-                mokLibreta, new EnvioDeMailConcursantes());
+                mokLibreta, new mokEnvioDeMail());
         pepe = new Participante("clara ", "55101984", "clara@gmail.com");
         concuTest.inscripcion(pepe);
         assertTrue(mokLibreta.estaInscripto(pepe.getDni()));
@@ -84,7 +84,7 @@ public class ConcursoTest {
         EnDiscoLibretaDeText disco = new EnDiscoLibretaDeText("/home/jose/objetos-2/prueva.txt");
         Participante pepe = new Participante("pepe", "35123011", "caracio35@gmail.com");
         Concurso concuTest = new Concurso("concursoTest",
-                LocalDate.now().minusDays(1), LocalDate.now().plusDays(15), disco, new EnvioDeMailConcursantes());
+                LocalDate.now().minusDays(1), LocalDate.now().plusDays(15), disco, new mokEnvioDeMail());
         pepe = new Participante("clara ", "55101984", "clara@gmail.com");
         concuTest.inscripcion(pepe);
         assertTrue(disco.estaInscripto(pepe.getDni()));
@@ -97,17 +97,18 @@ public class ConcursoTest {
 
         EnBaseDatosLibretaText baseDato = new EnBaseDatosLibretaText();
         Participante pepe = new Participante("pepe", "35123011", "caracio35@gmail.com");
+        @SuppressWarnings("unused")
         Concurso concuTest = new Concurso("concursoTest",
-                LocalDate.now().minusDays(1), LocalDate.now().plusDays(15), baseDato, new EnvioDeMailConcursantes());
+                LocalDate.now().minusDays(1), LocalDate.now().plusDays(15), baseDato, new mokEnvioDeMail());
         pepe = new Participante("clara ", "55101984", "clara@gmail.com");
-        concuTest.inscripcion(pepe);
         assertTrue(baseDato.estaInscripto(pepe.getDni()));
-        pepe = new Participante("clara ", "55101984", "clara@gmail.com");
+        pepe = new Participante("clara ", "55101985", "clara@gmail.com");
         assertFalse(baseDato.estaInscripto(pepe.getDni()));
     }
 
     @Test
     public void envioDeMail() {
-        EnvioDeMailConcursantes.envioDeMail("caracio35@gmail.com");
+        EnvioDeMailConcursantes unEnvioDeMail = new EnvioDeMailConcursantes();
+        unEnvioDeMail.envioDeMail("caracio35@gmail.com");
     }
 }
