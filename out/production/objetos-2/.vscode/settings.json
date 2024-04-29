@@ -1,6 +1,5 @@
 {
     "java.configuration.updateBuildConfiguration": "interactive",
     "git.ignoreLimitWarning": true,
-    "java.debug.settings.onBuildFailureProceed": true,
-    "editor.fontSize": 19
+    "java.debug.settings.onBuildFailureProceed": true
 }
