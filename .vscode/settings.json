@@ -2,5 +2,9 @@
     "java.configuration.updateBuildConfiguration": "interactive",
     "git.ignoreLimitWarning": true,
     "java.debug.settings.onBuildFailureProceed": true,
-    "editor.fontSize": 19
+    "editor.fontSize": 19,
+    "editor.formatOnType": true,
+    "editor.formatOnSave": true,
+    "diffEditor.codeLens": true,
+    "editor.formatOnPaste": true
 }
