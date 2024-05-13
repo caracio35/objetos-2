@@ -2,6 +2,8 @@ package ejercio1.UI;
 
 import java.awt.ComponentOrientation;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -11,19 +13,21 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import ejercio1.modelo.Participante;
+import ejercio1.modelo.AplicacionRegistracionParticipantes;
+
 
 public class AgregarParticipantesUI extends JFrame {
     private JTextField nombre;
     private JTextField telefono;
     private JTextField region;
-    private Participante participante;
+    AplicacionRegistracionParticipantes aplicacion;
 
-    public AgregarParticipantesUI() {
+    public AgregarParticipantesUI(AplicacionRegistracionParticipantes aplicacion) {
+        this.aplicacion = aplicacion;
         setupUIComponents();
     }
 
-    private void setupUIComponents() {
+    public void setupUIComponents() {
         setTitle("Add Participant");
         setSize(400, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -43,15 +47,11 @@ public class AgregarParticipantesUI extends JFrame {
         contentPane.add(new JLabel("Region: "));
         contentPane.add(region);
         JButton botonCargar = new JButton("Cargar");
-        // botonCargar.addActionListener(new ActionListener() {
-        //     public void actionPerformed(ActionEvent e) {
-        //         try {
-        //             onBotonCargar();
-        //         } catch (Exception ex) {
-        //             JOptionPane.showMessageDialog(AgregarParticipante.this, "Error al cargar el participante: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        //         }
-        //     }
-        // });
+        botonCargar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                onBotonCargar();
+            }
+        });
         contentPane.add(botonCargar);
         setContentPane(contentPane);
         contentPane.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
@@ -60,24 +60,15 @@ public class AgregarParticipantesUI extends JFrame {
     }
 
     private void onBotonCargar() {
-        String nombre = this.nombre.getText();
-        String telefono = this.telefono.getText();
-        String region = this.region.getText();
+        String nombreStr = this.nombre.getText();
+        String telefonoStr = this.telefono.getText();
+        String regionStr = this.region.getText();
         try {
-            participante=new Participante(nombre, telefono, region);
+            aplicacion.agregarParticipantes(nombreStr, telefonoStr, regionStr);
             JOptionPane.showMessageDialog(this, "Participante agregado correctamente");
             dispose();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al cargar el participante: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-
-    // public static void main(String[] args) {
-        // try {
-        //     AgregarParticipanteModelo modelo = new AgregarParticipanteModelo();
-        //     new AgregarParticipanteUI(modelo);
-        // } catch (Exception e) {
-        //     JOptionPane.showMessageDialog(null, "Error al iniciar la aplicación: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        // }
-    //}
 }

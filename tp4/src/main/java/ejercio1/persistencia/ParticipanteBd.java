@@ -16,9 +16,6 @@ public class ParticipanteBd implements ListaParticipantes {
     private final String password = "";
     private Connection dbConn;
 
-    public ParticipanteBd() {
-        
-    }
 
     @Override
     public void addParticipante(Participante p) {
